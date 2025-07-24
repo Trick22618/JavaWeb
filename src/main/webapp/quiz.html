@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>趣味性向測驗</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+		<link rel="stylesheet" href="/JavaWeb/css/buttons.css">
+		<script type="text/javascript" src="/JavaWeb/js/quiz.js"></script>
+	</head>
+	<body style="padding: 20px">
+		<h1>趣味性向測驗, 您像哪一種動物?</h1>
+		<form class="pure-form">
+			<fieldset>
+				<legend>測驗題目</legend>
+				<div>
+					問題 1: 您喜歡安靜還是熱鬧 ?
+					<input type="radio" id="q1" name="q1" value="1" />安靜
+					<input type="radio" id="q1" name="q1" value="2" />熱鬧
+				</div>
+				<div>
+					問題 2: 您喜歡冒險還是穩定 ?
+					<input type="radio" id="q2" name="q2" value="1" />冒險
+					<input type="radio" id="q2" name="q2" value="2" />穩定
+				</div>
+				<div>
+					問題 3: 您喜歡獨處還是群體 ?
+					<input type="radio" id="q3" name="q3" value="1" />獨處
+					<input type="radio" id="q3" name="q3" value="2" />群體
+				</div>
+				<button type="button" onclick="checkResult()" class="pure-button pure-button-primary">看結果</button>
+				<button type="button" onclick="checkResult()" class="button-success pure-button">看結果</button>
+				<button type="button" onclick="checkResult()" class="button-error pure-button">看結果</button>
+				<button type="button" onclick="checkResult()" class="button-warning pure-button">看結果</button>
+				<button type="button" onclick="checkResult()" class="button-secondary pure-button">看結果</button>
+				<button type="button" onclick="checkResult()" class="pure-button">看結果</button>
+				<button type="button" onclick="checkResult()" class="pure-button pure-button-disabled">看結果</button>
+			</fieldset>
+		</form>
+		<div id="result"></div>
+		
+	</body>
+</html>
