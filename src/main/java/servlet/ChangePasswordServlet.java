@@ -16,6 +16,7 @@ import service.impl.UserServiceImpl;
 public class ChangePasswordServlet extends HttpServlet {
 	
 	private UserService userService = new UserServiceImpl();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 重導一個 change_password.jsp 網頁
@@ -24,15 +25,17 @@ public class ChangePasswordServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String oldPasswordString = req.getParameter("oldpassword");
-		String newPasswordString = req.getParameter("newpassword");
+		String oldPassword = req.getParameter("oldPassword");
+		String newPassword = req.getParameter("newPassword");
 		
 		try {
 			HttpSession session = req.getSession(false);
 			String username = session.getAttribute("username").toString();
 			User user = userService.getUserByUsername(username);
-			int id = user.getId();
-			userService.changePasswordById(id, oldPasswordString, newPasswordString);
+			// 取得 user 的 id
+			int id = user.getId();	
+			// 變更密碼
+			userService.changePasswordById(id, oldPassword, newPassword);
 			req.setAttribute("message", "密碼變更成功");
 		} catch (Exception e) {
 			req.setAttribute("message", e.getMessage());
@@ -40,5 +43,5 @@ public class ChangePasswordServlet extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/view/result.jsp").forward(req, resp);
 		
 	}
-
+	
 }

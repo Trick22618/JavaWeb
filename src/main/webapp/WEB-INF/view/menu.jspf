@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div id="menu" class="pure-form">
+
+	<% if(session.getAttribute("username") == null) { %>
+		<a href="/JavaWeb/login" class="pure-button pure-button-primary">📩 用戶登入</a>
+	<% } else { %>
+		<span style="font-size: 20px;font-weight: bold">
+			Hi <%=session.getAttribute("username") %> 您好 !
+		</span>
+		<a href="/JavaWeb/register" class="pure-button pure-button-primary">🆔 用戶註冊</a>	
+		<a href="/JavaWeb/user" class="pure-button pure-button-primary">🕺 用戶列表</a>
+		<a href="/JavaWeb/japanese/class/level" class="pure-button pure-button-primary">🐧 日文能力</a>
+		<a href="/JavaWeb/beverage" class="pure-button pure-button-primary">🥤 飲料訂購</a>			
+		<a href="/JavaWeb/chart" class="pure-button pure-button-primary">📊 統計圖表</a>				
+		<a href="/JavaWeb/logout" class="pure-button pure-button-primary">🦽 用戶登出</a>
+	<% } %>
+</div>
+<p />

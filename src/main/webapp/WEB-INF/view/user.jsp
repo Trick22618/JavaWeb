@@ -15,7 +15,9 @@
 		<link rel="stylesheet" href="/JavaWeb/css/buttons.css">
 	</head>
 	<body style="padding: 20px">
-		<h2>Hi <%=session.getAttribute("username") %> 您好 !</h2>
+		<!-- menu -->
+		<%@include file="/WEB-INF/view/menu.jspf" %>
+		
 		<!-- 使用者列表 -->
 		<div class="pure-form">
 			<fieldset>
@@ -55,9 +57,6 @@
 						<% } %>
 					</tbody>
 				</table>
-				<br />
-				<a href="/JavaWeb/register" class="pure-button pure-button-primary">註冊</a>
-				<a href="/JavaWeb/logout" class="pure-button pure-button-primary">登出</a>
 			</fieldset>
 		</div>
 			

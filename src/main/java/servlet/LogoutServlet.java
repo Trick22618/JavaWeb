@@ -25,7 +25,7 @@ public class LogoutServlet extends HttpServlet {
 		
 		// 內部重導到 result.jsp
 		req.setAttribute("message", "登出成功");
-		req.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/view/result.jsp").forward(req, resp);
 	}
 
 }
