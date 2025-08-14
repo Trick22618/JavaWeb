@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Chat Client</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+		<link rel="stylesheet" href="/JavaWeb/css/buttons.css">
+	</head>
+	<body style="padding: 20px">
+		<h1>我的聊天室</h1>
+		<div class="pure-form">
+			<fieldset>
+				<legend>聊天室</legend>
+				<button type="button" id="onOpenButton" class="button-success pure-button">連線</button>
+				<button type="button" id="onCloseButton" class="button-error pure-button">離線</button>
+				<p />
+				<input type="text" id="messageInput" placeholder="請輸入訊息" />
+				<button type="button" id="onMessageButton" class="button-secondary pure-button">傳送</button>
+			</fieldset>
+		</div>
+		<div class="pure-form">
+			<fieldset>聊天歷史紀錄</fieldset>
+			<div id="messageHistory"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function startup() {
+			const onOpenButton = document.getElementById('onOpenButton');
+			const onCloseButton = document.getElementById('onCloseButton');
+			const messageInput = document.getElementById('messageInput');
+			const onMessageButton = document.getElementById('onMessageButton');
+			const messageHistory = document.getElementById('messageHistory');
+			
+			onOpenButton.disabled = false;
+			onCloseButton.disabled = true;
+			messageInput.disabled = true;
+			onMessageButton.disabled = true;
+			
+			var webSocket = null;
+			
+			// 配置 WebSocket
+			function setWebSocket() {
+				const wsurl = 'ws://localhost:8080/JavaWeb/chatserver';
+				webSocket = new WebSocket(wsurl);
+				
+				// 連線成功後會自動調用的函式
+				webSocket.onopen = function() {
+					onOpenButton.disabled = true;
+					onCloseButton.disabled = false;
+					messageInput.disabled = false;
+					onMessageButton.disabled = false;
+				};
+				
+				// 接收來自 websocket server 的訊息會自動調用的函式
+				webSocket.onmessage = function(event) {
+					const message = event.data; // 接收來自 websocket server 的訊息
+					messageHistory.insertAdjacentHTML('afterbegin', message + '<br />'); // 插入資料
+				};
+				
+				// 離線成功後會自動調用的函式
+				webSocket.onclose = function() {
+					onOpenButton.disabled = false;
+					onCloseButton.disabled = true;
+					messageInput.disabled = true;
+					onMessageButton.disabled = true;
+				};
+				
+				// 發生錯誤時會自動調用的函式
+				webSocket.onerror = function(e) {
+					console.log(e);
+					alert(e);
+				};
+			}
+			
+			// 按下 [連線] 按鈕
+			onOpenButton.addEventListener('click', function() {
+				setWebSocket();
+			});
+			
+			// 按下 [離線] 按鈕
+			onCloseButton.addEventListener('click', function() {
+				webSocket.close(); // 離線關閉
+			});
+			
+			// 按下 [傳送] 按鈕
+			onMessageButton.addEventListener('click', function() {
+				webSocket.send(messageInput.value);
+			});
+			
+		}		
+		window.onload = startup;
+	</script>
+	
+</html>
