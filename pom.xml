@@ -6,7 +6,13 @@
   <packaging>war</packaging>
   
   <dependencies>
-
+		
+		<dependency>
+	    	<groupId>org.json</groupId>
+	    	<artifactId>json</artifactId>
+	    	<version>20240303</version> <!-- 您也可以選用最新的版本 -->
+		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
 		<dependency>
 			<groupId>com.mysql</groupId>

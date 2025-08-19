@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,6 +9,9 @@
 		<link rel="stylesheet" href="/JavaWeb/css/buttons.css">
 	</head>
 	<body style="padding: 20px">
+		<!-- menu -->
+		<%@include file="/WEB-INF/view/menu.jspf" %>
+		
 		<h1>我的聊天室</h1>
 		<div class="pure-form">
 			<fieldset>
@@ -40,7 +45,8 @@
 			
 			// 配置 WebSocket
 			function setWebSocket() {
-				const wsurl = 'ws://localhost:8080/JavaWeb/chatserver';
+				const wsurl = 'ws://' + window.location.host + '/JavaWeb/chatserver';
+				// 建立連線
 				webSocket = new WebSocket(wsurl);
 				
 				// 連線成功後會自動調用的函式
@@ -87,7 +93,8 @@
 				webSocket.send(messageInput.value);
 			});
 			
-		}		
+		}
+		
 		window.onload = startup;
 	</script>
 	
